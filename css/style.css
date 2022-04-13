@@ -1,0 +1,59 @@
+
+body{
+    background-color: rgb(156, 131, 131);
+    font-family: -apple-system, BlinkMAcSystemFont, 'Segoe UI' Roboto, Helvetica, Arial, sans-serif;
+}
+#form{
+    background:rgba(0,0,0,0.15);
+    padding: 0.25rem;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    height: 3rem;
+    box-sizing: border-box;
+    background-color: blue(10px);
+}
+
+#input{
+    border: none;
+    padding: 0 1rem;
+    flex-grow: 1;
+    border-radius: 2rem;
+    margin: 
+    0.25rem;
+}
+
+#input:focus{
+    outline: none;
+}
+
+#form > button{
+    background: #333;
+    border:none;
+    padding: 0 1rem;
+    margin: 0.25rem;
+    border-radius: 3px;
+    outline: none;
+    color: #fff;
+}
+
+#messages{
+    list-style-type: none;
+}
+
+#messages > li{
+    padding: 0.5rem 1rem;
+}
+
+#messages >li:nth-child(odd){
+    background: #887878;
+}
+.first{
+    margin-right: none;
+    margin-left: none;
+}
+.row-height{
+    height:auto;
+}

@@ -1,0 +1,38 @@
+<html class="h-100">
+    <head>
+        <title>
+            SIO GANG Bande de BG
+        </title>
+        <link rel="stylesheet" href="style.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+    </head>
+    <body  class="h-100">
+        <div id="first"class="container-fluid h-100">
+            <div class="row h-100" id="pr">
+                <div class="col-1 .col-sm-3" id="pp" >Utilisateur
+                    <br>
+                    </br>
+                
+                    <ul id="users"></ul>
+                </div>
+                <div class="col-11 .col-sm-9">
+                    <ul id="messages"></ul>
+                </div>
+                
+            </div>
+            <div class="row">
+                <form id="form" action="">
+                    <div class="col-10">
+                        <input id="input" class="w-75" autocomplete="off"/>
+                    </div>
+                    <div class="col-2">
+                        <button id="button" class="w-75">C Moi Wesh</button>
+                    </div>
+                </form>
+                <script src="socket.io/socket.io.js"></script>
+                <script src="client.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>
+            </div>
+        </div>
+    </body>
+</html>
