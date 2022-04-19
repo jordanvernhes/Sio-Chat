@@ -9,6 +9,8 @@ const { listeners } = require('process');
 const { getSystemErrorMap } = require('util');
 let PORT = 8080;
 
+
+//port d'ecoute
 server.listen(PORT, ()=>{
     console.log('Server démarré sur le port :'+PORT);
 });
@@ -29,7 +31,7 @@ io.on('connection', (socket)=>{
         console.log(pseudo+" vient de se connecter à "+new Date());
         socket.nickname = pseudo;
         io.fetchSockets().then((room)=>{
-            var utilisateurs=[];
+            let utilisateurs = [{id_client: 'general', pseudo_client: 'Salon'}];
             room.forEach((item)=>{
                 utilisateurs.push({
                     id_client : item.id,
@@ -40,18 +42,29 @@ io.on('connection', (socket)=>{
             console.log(utilisateurs);
         });
         
+
+
     });
-    socket.on('emission_message',(message , room)=>{
+    socket.on('emission_message',(message , id)=>{
         console.log(socket.nickname+" vient d'écrire :"+message);
-        socket.message = message;
-        io.emit('reception_message',{
-            pseudo: socket.nickname,
-            message: socket.message
+        console.log(id);
+        var lesMessages =[];
+        lesMessages.push({
+            pseudo : socket.nickname,
+            message: socket.message,
         });
-        io.emit('reception_id_salon',{
-            id_salon: room
-            
-        }); 
+        socket.message = message;
+
+        if(id === "general"){
+            io.emit('reception_message',{
+                pseudo: socket.nickname,
+                message: socket.message});
+        }
+        else{
+            io.to(socket.id).to(id).emit('reception_message',{
+                pseudo: socket.nickname,
+                message: socket.message});
+        }
     });
     socket.on('disconnect', async ()=>{
         console.log(socket.nickname+" vient de se deconnecter.");
@@ -66,9 +79,4 @@ io.on('connection', (socket)=>{
             io.emit('reception_utilisateur', utilisateurs );
         });
     });
-    // socket.on('emission_id_salon'),(a)=>{
-    //     var idsalonweb="test24";
-    //     idsalonweb = id_salon;
-    //     consol.log(idsalonweb);
-    // };
 });

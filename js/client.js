@@ -1,5 +1,12 @@
 var socket = io();
 
+id_salon = 'general'
+function Salon(id) {
+    id_salon = id;
+    console.log("le salon a été changer par "+ id);
+    messages.innerHTML="";
+};
+
 socket.emit('set-pseudo',prompt("Pseudo?"));
 var messages = document.getElementById('messages');
 var users = document.getElementById('users');
@@ -9,7 +16,7 @@ form.onsubmit = () => {return false}
 
 form.addEventListener('submit',(e)=>{
     if(input.value !=''){
-        socket.emit('emission_message', input.value);
+        socket.emit('emission_message', input.value, id_salon);
         input.value=""
         
     }
@@ -26,18 +33,7 @@ socket.on('reception_message',(contenu)=>{
 socket.on('reception_utilisateur',(e)=>{
     var txt ="";
     e.forEach((item) => {
-        txt += "<center>"+item.pseudo_client+"<br></br>"+"</center>"
+        txt += "<center><a href=\"#\" onClick=Salon('"+item.id_client+"')>"+item.pseudo_client+"</a><br></br></center>"
     });
     users.innerHTML=txt;
 });
-var id_salon='salon';
-var lesMessages = [];
-
-function salon(id){
-    console.log(id);
-}
-
-function check_unread(){
-
-}
-
